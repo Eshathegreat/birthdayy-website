@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Story</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+    p { font-size: 1.2rem; margin-bottom: 1rem; }
+
+    img {
+      width: 220px;
+      height: auto;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    button {
+      background-color: #fff;
+      color: #ff6b81;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1rem;
+      border-radius: 25px;
+      cursor: pointer;
+      margin: 10px;
+      transition: 0.3s;
+    }
+    button:hover { background-color: #ff6b81; color: #fff; }
+
+    .page { display: none; }
+    .active { display: block; }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #fff;
+      animation: fall 3s linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Page 1 -->
+  <div id="page1" class="page active">
+    <h1>🎂 Happy Birthday, Hitler Sahab! 🎉</h1>
+    <img src="images/birthday.png" alt="Birthday Picture" >
+    <p>Today is all about you and your beautiful smile 💖</p>
+    <button onclick="nextPage(2)">Next ➡️</button>
+  </div>
+
+  <!-- Page 2 (Extra Wishes) -->
+  <div id="page2" class="page">
+    <h1>💌 Extra Birthday Wishes 🌸</h1>
+    <p>💖 May your smile shine brighter than the stars!</p>
+    <p>🌼 You deserve all the blessings, happiness, and giftss today!</p>
+    <p>🐻 Sending you many many happy returns of the day!</p>
+    <p>🌙 May your dreams sparkle like the night sky!</p>
+    <button onclick="nextPage(3)">Next ➡️</button>
+  </div>
+
+  <!-- Page 3 (Likes) -->
+  <div id="page3" class="page">
+    <h1>🌹 What I Like About You 💕</h1>
+    <p>✨ Your kindness melts hearts.</p>
+    <p>🌼 Your laughter makes everything brighter.</p>
+    <p>🍫 You’re sweeter than chocolate!</p>
+    <p>🌹 I admire your strength, your beauty, and your heart.</p>
+    <button onclick="nextPage(4)">Next ➡️</button>
+  </div>
+
+  <!-- Page 4 (Celebrate) -->
+  <div id="page4" class="page">
+    <h1>🎁 Surprise! 🎊</h1>
+    <p>You are the sweetest gift to everyone around you 💕</p>
+    <button onclick="celebrate()">Celebrate 🎉</button>
+  </div>
+
+  <script>
+    function nextPage(pageNumber) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page' + pageNumber).classList.add('active');
+    }
+
+    function celebrate() {
+      for (let i = 0; i < 80; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = Math.random() * window.innerWidth + 'px';
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+        confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 5000);
+      }
+      alert("🎶 You are special more than words can ever explain 💕");
+    }
+  </script>
+</body>
+</html>
